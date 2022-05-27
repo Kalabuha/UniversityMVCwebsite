@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Task20.Entities\Task20.Entities.csproj" />
+    <ProjectReference Include="..\Task20.Models\Task20.Models.csproj" />
+    <ProjectReference Include="..\Task20.Repositories\Task20.Repositories.csproj" />
+  </ItemGroup>
+
+</Project>

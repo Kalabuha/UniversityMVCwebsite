@@ -1,0 +1,62 @@
+﻿@model List<CourseViewModel>
+
+@{
+    ViewData["Title"] = "About ROU";
+}
+
+<div>
+    <h1 class="header-h1 text-container">Here we will talk about our university</h1>
+    <h2 class="header-h2 text-container">Our certificates</h2>
+    <ul class="certificate-list">
+        <li class="certificate-list-item">
+            <img class="certificate-img-1" src="../img/certificate1.jpg" alt="certificate№1"/>
+        </li>
+        <li class="certificate-list-item">
+            <img class="certificate-img-2" src="../img/certificate2.jpg" alt="certificate№2"/>
+        </li>
+        <li class="certificate-list-item">
+            <img class="certificate-img-3" src="../img/certificate3.jpg" alt="certificate№3"/>
+        </li>
+    </ul>
+
+    <h2 class="header-h2 text-container">Our courses</h2>
+    <ol class="courses-list">
+        @if (Model != null)
+        {
+            foreach (var courseViewModel in Model)
+            {
+                <li class="courses-list-item">
+                    <h3 class="header-h3 text-container">@courseViewModel.Course.Name</h3>
+                    <p class="text-container">Was created <b>@courseViewModel.Course.CreationDate.ToString("dd.MM.yyyy")</b></p>
+                    <p class="text-container">@courseViewModel.Course.Description</p>
+                    @if (courseViewModel.CourseData != null)
+                    {
+                        <p class="text-container">
+                            The course includes @courseViewModel.CourseData.GroupsAmount
+                            @if (@courseViewModel.CourseData.GroupsAmount == 1)
+                            { <span class="text-container">group.</span> }
+                            else
+                            { <span class="text-container">groups.</span> }
+                        </p>
+
+                        if (courseViewModel.CourseData.CourseLeader != null)
+                        {
+                            <p class="text-container">
+                                Course dean:
+                                @courseViewModel.CourseData.CourseLeader.Firstname
+                                @courseViewModel.CourseData.CourseLeader.Middlename
+                                @courseViewModel.CourseData.CourseLeader.Lastname.
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="text-container">
+                                The dean of the course has not been appointed at the moment.
+                            </p>
+                        }
+                    }
+                </li>
+            }
+        }
+    </ol>
+</div>

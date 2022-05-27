@@ -1,0 +1,98 @@
+@media (min-width: 768px) {
+  body {
+    font-size: 20px;
+    margin: 0 0 60px 0;
+  }
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  background-color: #293038;
+  margin: 0;
+}
+
+.header {
+  margin: 0;
+}
+
+.navbar {
+  margin: 0;
+  padding: 0;
+}
+
+.container-fluid {
+  margin: 0;
+  padding: 0;
+  height: 70px;
+  background-color: #f7be14;
+}
+
+.navbar-brand {
+  display: inline-block;
+  font-size: 30px;
+  font-weight: 700;
+  margin: 0 20px;
+  height: 60px;
+  padding: 4px 0 0 180px;
+  background-image: url("../img/LogoYellowBlack.jpg");
+  background-repeat: no-repeat;
+  background-size: 150px, 70px;
+  background-position-y: left;
+}
+
+.container {
+  margin: 0 auto;
+  padding: 0;
+  width: 1170;
+  font-family: Arial, Helvetica;
+}
+
+/* common styles */
+.text-container {
+  color: #fff;
+}
+
+.header-h1 {
+  margin: 0 0 20px 0;
+}
+
+.header-h2 {
+  margin: 0 0 10px 0;
+}
+
+.article-paragraph:not(:last-child) {
+  margin: 0 0 40px 0;
+}
+
+/* About ROU */
+/* Index */
+.certificate-list {
+  padding: 0;
+  margin: 0;
+}
+
+.certificate-list-item {
+  display: inline-block;
+}
+
+.certificate-list-item:not(:last-child) {
+  margin: 0 20px 30px 0;
+}
+
+.certificate-img-1, .certificate-img-2, .certificate-img-3 {
+  height: 320px;
+}
+
+.courses-list {
+  list-style-type: upper-roman;
+  color: #fff;
+  margin: 0;
+}
+
+.courses-list-item:not(:last-child) {
+  margin: 0 0 40px 0;
+}
