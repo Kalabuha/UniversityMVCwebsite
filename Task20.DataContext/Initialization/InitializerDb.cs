@@ -48,17 +48,17 @@ namespace Task20.DataContext.Initialization
             var groups = new List<GroupEntity>()
             {
                 // cg-yy: <номер курса><номер группы>-<год>
-                new GroupEntity { Name = "11-98", Description = "Первая группа", CreationDate = new DateTime(1998, 08, 01), Course = courses[0], Leader = teachers[3] },
-                new GroupEntity { Name = "12-98", Description = "Вторая группа", CreationDate = new DateTime(1998, 08, 01), Course = courses[1], Leader = teachers[4] },
-                new GroupEntity { Name = "13-98", Description = "Третья группа", CreationDate = new DateTime(1998, 08, 01), Course = courses[1], Leader = teachers[5] },
-                new GroupEntity { Name = "21-01", Description = "Четвёртая группа", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[6] },
-                new GroupEntity { Name = "22-01", Description = "Пятая группа", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[7] },
-                new GroupEntity { Name = "23-01", Description = "Шестая группа", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[8] },
-                new GroupEntity { Name = "31-05", Description = "Седьмая группа", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[9] },
-                new GroupEntity { Name = "32-05", Description = "Восьмая группа", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[10] },
-                new GroupEntity { Name = "33-05", Description = "Девятая группа", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[11] },
-                new GroupEntity { Name = "11-08", Description = "Десятая группа", CreationDate = new DateTime(2008, 04, 15), Course = courses[2], Leader = teachers[12] },
-                new GroupEntity { Name = "12-08", Description = "Одиннадцатая группа", CreationDate = new DateTime(2008, 04, 15), Course = courses[2], Leader = teachers[13] },
+                new GroupEntity { Name = "11-98", Description = "First group", CreationDate = new DateTime(1998, 08, 01), Course = courses[0], Leader = teachers[3] },
+                new GroupEntity { Name = "12-98", Description = "Sacond group", CreationDate = new DateTime(1998, 08, 01), Course = courses[1], Leader = teachers[4] },
+                new GroupEntity { Name = "13-98", Description = "Third group", CreationDate = new DateTime(1998, 08, 01), Course = courses[1], Leader = teachers[5] },
+                new GroupEntity { Name = "21-01", Description = "Fourth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[6] },
+                new GroupEntity { Name = "22-01", Description = "Fifth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[7] },
+                new GroupEntity { Name = "23-01", Description = "Sixth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[8] },
+                new GroupEntity { Name = "31-05", Description = "Seventh group", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[9] },
+                new GroupEntity { Name = "32-05", Description = "Eight group", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[10] },
+                new GroupEntity { Name = "33-05", Description = "Ninth group", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[11] },
+                new GroupEntity { Name = "11-08", Description = "Tenth group", CreationDate = new DateTime(2008, 04, 15), Course = courses[2], Leader = teachers[12] },
+                new GroupEntity { Name = "12-08", Description = "Eleven group", CreationDate = new DateTime(2008, 04, 15), Course = courses[2], Leader = teachers[13] },
             };
 
             var students = new List<StudentEntity>()

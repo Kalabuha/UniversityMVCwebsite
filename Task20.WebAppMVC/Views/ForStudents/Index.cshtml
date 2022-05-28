@@ -1,7 +1,112 @@
-﻿@{
+﻿@model ForStudentsViewModel
+
+@{
     ViewData["Title"] = "For students";
 }
 
 <div>
-    <h1 class="header-h1 text-container">Welcome to for students</h1>
+    <h1 class="header-h1 text-container">Information for students</h1>
+    <p class="text-container">Here you can see the composition of our training team.</p>
+    <div>
+        <h2 class="header-h2 text-container">Teaching Staff</h2>
+        <ul class="teachers-list">
+            <li class="teachers-list-item">
+                <img class="teachers-img-1" src="../img/teachers1.jpg" alt="men№1"/>
+            </li>
+            <li class="teachers-list-item">
+                <img class="teachers-img-2" src="../img/teachers2.jpg" alt="men№2"/>
+            </li>
+        </ul>
+        
+        @if (Model != null)
+        {
+            // Учителя
+            <h2 class="header-h2 text-container">Our teachers</h2>
+            @if (Model.Teachers != null)
+            {
+                <table class="table teahcers-table text-container">
+                    <thead class="table-head teahcers-table-head">
+                        <tr class="table-row teahcers-table-row">
+                            <th class="table-cell teahcers-table-cell">First name</th>
+                            <th class="table-cell teahcers-table-cell">Sacond name</th>
+                            <th class="table-cell teahcers-table-cell">Last name</th>
+                            <th class="table-cell teahcers-table-cell">Date of Birth</th>
+                            <th class="table-cell teahcers-table-cell">Work experience</th>
+                        </tr>
+                    </thead>
+                    <tbody class="teahcers-table-body">
+                        @foreach (var teacher in Model.Teachers)
+                        {
+                            <tr class="teahcers-table-row">
+                                <td class="table-cell teahcers-table-cell">@teacher.Firstname</td>
+                                <td class="table-cell teahcers-table-cell">@teacher.Middlename</td>
+                                <td class="table-cell teahcers-table-cell">@teacher.Lastname</td>
+                                <td class="table-cell teahcers-table-cell">@teacher.DateBirth.ToString("dd.MM.yyyy")</td>
+                                <td class="table-cell teahcers-table-cell">@teacher.Experience</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-container">We're sorry, no teacher data found.</p>
+            }
+
+            // Группы
+            <h2 class="header-h2 text-container">Our student groups</h2>
+            @if (Model.GroupViewModels != null)
+            {
+                <table class="table text-container">
+                    <thead class="table-head">
+                        <tr class="table-row">
+                            <th class="table-cell">Group name</th>
+                            <th class="table-cell">Group number</th>
+                            <th class="table-cell">Date of creation</th>
+                            <th class="table-cell">Group leader</th>
+                            <th class="table-cell">number of students</th>
+                        </tr>
+                    </thead>
+                    <tbody class="table-body">
+                        @foreach (var groupViewModels in Model.GroupViewModels)
+                        {
+                            <tr class="table-row">
+                                <td class="table-cell">@groupViewModels.Group.Description</td>
+                                <td class="table-cell">@groupViewModels.Group.Name</td>
+                                <td class="table-cell">@groupViewModels.Group.CreationDate.ToString("dd.MM.yyyy")</td>
+                                @if (groupViewModels.GroupData != null)
+                                {
+                                    @if (@groupViewModels.GroupData.GroupLeader != null)
+                                    {
+                                        <td class="table-cell">
+                                            @groupViewModels.GroupData.GroupLeader.Firstname
+                                            @groupViewModels.GroupData.GroupLeader.Lastname
+                                        </td>
+                                    }
+                                    else
+                                    {
+                                        <td class="table-cell">Currently not assigned</td>
+                                    }
+                                    <td class="table-cell">@groupViewModels.GroupData.StudentsAmount</td>
+                                }
+                                else
+                                {
+                                    <td class="table-cell">Currently not assigned</td>
+                                    <td class="table-cell">0</td>
+                                }
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            }
+            else
+            {
+                <p class="text-container">We're sorry, no group data was found.</p>
+            }
+        }
+        else
+        {
+            <p class="text-container">We're sorry, no data was found.</p>
+        }
+    </div>
 </div>

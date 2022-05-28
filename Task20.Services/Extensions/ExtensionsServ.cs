@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Task20.Services.AboutROUService;
+using Task20.Services;
 
 namespace Task20.Services.Extensions
 {
@@ -8,9 +8,9 @@ namespace Task20.Services.Extensions
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {
             services.AddScoped<CourseService>();
-            //services.AddScoped<GroupRepository>();
+            services.AddScoped<GroupService>();
+            services.AddScoped<TeacherService>();
             //services.AddScoped<StudentRepository>();
-            //services.AddScoped<TeacherRepository>();
 
             return services;
         }

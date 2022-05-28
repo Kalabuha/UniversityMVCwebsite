@@ -1,4 +1,4 @@
-﻿@model List<CourseViewModel>
+﻿@model AboutRouViewModel
 
 @{
     ViewData["Title"] = "About ROU";
@@ -6,6 +6,15 @@
 
 <div>
     <h1 class="header-h1 text-container">Here we will talk about our university</h1>
+    <h2 class="header-h2 text-container">About RO University</h2>
+    <p class="text-container">
+        The RO University is a prestigious international university whose mission is to provide top quality education
+        to students throughout the world by combining both traditional teaching methods and state of the art distance-learning
+        ﻿facilities. The university is an independent Baptist institution based in Louisiana state of America. 
+        The university runs its programs through a hybrid of distance-learning and on campus for those programs requiring
+        some practicum component to them.
+    </p>
+
     <h2 class="header-h2 text-container">Our certificates</h2>
     <ul class="certificate-list">
         <li class="certificate-list-item">
@@ -21,9 +30,9 @@
 
     <h2 class="header-h2 text-container">Our courses</h2>
     <ol class="courses-list">
-        @if (Model != null)
+        @if (Model != null && Model.CourseViewModels != null)
         {
-            foreach (var courseViewModel in Model)
+            foreach (var courseViewModel in Model.CourseViewModels)
             {
                 <li class="courses-list-item">
                     <h3 class="header-h3 text-container">@courseViewModel.Course.Name</h3>
@@ -31,14 +40,6 @@
                     <p class="text-container">@courseViewModel.Course.Description</p>
                     @if (courseViewModel.CourseData != null)
                     {
-                        <p class="text-container">
-                            The course includes @courseViewModel.CourseData.GroupsAmount
-                            @if (@courseViewModel.CourseData.GroupsAmount == 1)
-                            { <span class="text-container">group.</span> }
-                            else
-                            { <span class="text-container">groups.</span> }
-                        </p>
-
                         if (courseViewModel.CourseData.CourseLeader != null)
                         {
                             <p class="text-container">
@@ -54,9 +55,48 @@
                                 The dean of the course has not been appointed at the moment.
                             </p>
                         }
+
+                        if (@courseViewModel.CourseData.GroupsAmount == 0)
+                        {
+                            <p class="text-container">
+                                There are no groups in this course yet.
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="text-container">
+                                The course includes @courseViewModel.CourseData.GroupsAmount
+                                @if (@courseViewModel.CourseData.GroupsAmount == 1)
+                                { <span class="text-container">group.</span> }
+                                else
+                                { <span class="text-container">groups.</span> }
+                            </p>
+                        }
+
+                        if (@courseViewModel.CourseData.StudentsAmount == 0)
+                        {
+                            <p class="text-container">
+                                No students have been enrolled in this course yet.
+                            </p>
+                        }
+                        else
+                        {
+                            <p class="text-container">
+                                @courseViewModel.CourseData.StudentsAmount
+                                @if (@courseViewModel.CourseData.StudentsAmount == 1)
+                                { <span class="text-container">student</span> }
+                                else
+                                { <span class="text-container">students</span> }
+                                enrolled in this course.
+                            </p>
+                        }
                     }
                 </li>
             }
+        }
+        else
+        {
+            <p class="text-container">We're sorry, no data was found.</p>
         }
     </ol>
 </div>

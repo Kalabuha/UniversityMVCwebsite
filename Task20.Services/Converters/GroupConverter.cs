@@ -1,13 +1,13 @@
-﻿using Task20.Entities;
-using Task20.Models;
+﻿using Task20.Models;
+using Task20.Entities;
 
 namespace Task20.Services.Converters
 {
-    public static class CourseConverter
+    public static class GroupConverter
     {
-        public static CourseModel EntityToModel(this CourseEntity entity)
+        public static GroupModel EntityToModel(this GroupEntity entity)
         {
-            return new CourseModel
+            return new GroupModel
             {
                 Id = entity.Id,
                 Name = entity.Name,
@@ -17,13 +17,13 @@ namespace Task20.Services.Converters
             };
         }
 
-        public static CourseEntity ModelToEntity(this CourseModel model)
+        public static GroupEntity ModelToEntity(this GroupModel model)
         {
-            return new CourseEntity
+            return new GroupEntity
             {
                 Id = model.Id,
                 Name = model.Name,
-                Description = model.Description,
+                Description= model.Description,
                 CreationDate = model.CreationDate,
                 LeaderId = model.LeaderId,
             };

@@ -2,7 +2,7 @@
 using Task20.Entities;
 using Task20.DataContext.DataBaseContext;
 
-namespace Task20.Repositories.Repositories
+namespace Task20.Repositories
 {
     public class GroupRepository : BaseRepository<GroupEntity>
     {
@@ -21,7 +21,7 @@ namespace Task20.Repositories.Repositories
             return Context.Groups.Where(g => g.CourseId == courseId).ToList();
         }
 
-        public int? GetStudentsCountByGroupId(int groupId)
+        public int? GetGroupStatisticsByGroupId(int groupId)
         {
             var groups = Context.Students.Where(g => g.GroupId == groupId);
             return groups?.Count();

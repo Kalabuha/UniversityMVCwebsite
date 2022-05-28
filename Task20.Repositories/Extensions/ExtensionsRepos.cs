@@ -1,5 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
-using Task20.Repositories.Repositories;
+using Task20.Repositories;
 
 namespace Task20.Repositories.Extensions
 {

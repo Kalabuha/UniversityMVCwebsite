@@ -3,7 +3,7 @@ using Task20.Entities;
 using Task20.DataContext.DataBaseContext;
 using Task20.Repositories.Resources;
 
-namespace Task20.Repositories.Repositories
+namespace Task20.Repositories
 {
     public class CourseRepository : BaseRepository<CourseEntity>
     {
@@ -22,7 +22,7 @@ namespace Task20.Repositories.Repositories
             var statistics = Context.Courses.Where(c => c.Id == courseId)
                 .Select(c => new CourseStatistics
                 {
-                    GroupsAmount = c.Groups.Count(),
+                    GroupsAmount = c.Groups == null ? 0 : c.Groups.Count(),
                     StudentsAmount = c.Groups.SelectMany(s => s.Students).Count()
                 })
                 .FirstOrDefault();

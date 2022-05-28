@@ -2,7 +2,7 @@
 using Task20.Entities;
 using Task20.DataContext.DataBaseContext;
 
-namespace Task20.Repositories.Repositories
+namespace Task20.Repositories
 {
     public class StudentRepository : BaseRepository<StudentEntity>
     {

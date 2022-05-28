@@ -1,35 +1,50 @@
 ﻿using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
-using Task20.Services.AboutROUService;
+using Task20.Models;
+using Task20.Services;
 using Task20.WebAppMVC.Models;
+using Task20.WebAppMVC.Models.SimpleModels;
 
 namespace Task20.WebAppMVC.Controllers
 {
     public class AboutROUController : Controller
     {
         private readonly CourseService _courseService;
-        public AboutROUController(CourseService courseService)
+        private readonly TeacherService _teacherService;
+
+        public AboutROUController(CourseService courseService, TeacherService teacherService)
         {
             _courseService = courseService;
+            _teacherService = teacherService;
         }
 
         // GET: AboutROUController
         //[HttpGet("")]
         public ActionResult Index()
         {
-            var courseViewModels = new List<CourseViewModel>();
-            var courseModels = _courseService.GetAllCourses();
+            var viewContainer = new AboutRouViewModel { CourseViewModels = new List<CourseViewModel>() };
 
+            var courseModels = _courseService.GetAllCourseModels();
             for (int i = 0; i < courseModels.Count; i++)
             {
-                courseViewModels.Add(new CourseViewModel
+                var courseViewModel = new CourseViewModel();
+                courseViewModel.Course = courseModels[i];
+
+                var courseData = _courseService.GetGroupAndStudentNumberAsCourseDataById(courseModels[i].Id);
+                if (courseData != null)
                 {
-                    Course = courseModels[i],
-                    CourseData = _courseService.GetCourseDataById(courseModels[i].Id)
-                });
+                    courseViewModel.CourseData = courseData;
+                    if (courseModels[i].LeaderId.HasValue)
+                    {
+                        courseViewModel.CourseData.CourseLeader =
+                            _teacherService.GetTeacherModel(courseModels[i].LeaderId!.Value);
+                    }
+                }
+
+                viewContainer.CourseViewModels.Add(courseViewModel);
             }
 
-            return View(courseViewModels);
+            return View(viewContainer);
         }
 
         // GET: AboutROUController/Details/5

@@ -7,5 +7,6 @@ namespace Task20.Models
         public string Name { get; set; } = default!;
         public string Description { get; set; } = default!;
         public DateTime CreationDate { get; set; }
+        public int? LeaderId { get; set; }
     }
 }
