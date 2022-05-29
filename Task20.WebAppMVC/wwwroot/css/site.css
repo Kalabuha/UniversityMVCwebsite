@@ -30,7 +30,7 @@
 
 /* common styles */
 .container {
-  margin: 0 auto;
+  margin: 0 auto 60px auto;
   padding: 0;
   width: 1170;
   font-family: Arial, Helvetica;
