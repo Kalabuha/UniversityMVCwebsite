@@ -10,11 +10,15 @@ namespace Task20.DataContext.Initialization
     {
         public static void Initialize(UniversityDbContext context)
         {
-            if (!(context.GetService<IDatabaseCreator>() as RelationalDatabaseCreator)!.Exists())
-            {
-                context.Database.Migrate();
-                FillDb(context);
-            }
+            context.Database.EnsureDeleted();
+            context.Database.EnsureCreated();
+            FillDb(context);
+
+            //if (!(context.GetService<IDatabaseCreator>() as RelationalDatabaseCreator)!.Exists())
+            //{
+            //    context.Database.Migrate();
+            //    FillDb(context);
+            //}
         }
 
         private static void FillDb(UniversityDbContext context)
