@@ -1,7 +1,79 @@
-﻿@{
+﻿@model AdmissionViewModel
+
+@{
     ViewData["Title"] = "Admission";
 }
 
 <div>
-    
+    <h1 class="header-h1 text-container">Admission to ROU</h1>
+
+    <img class="students-img" src="../img/students.jpg" alt="students"/>
+
+    @if (Model != null && Model.Courses != null && Model.Courses.Count != 0 && Model.Groups != null)
+    {
+        <p class="text-container">
+            Do you want to enter our university and do not know how to do it? Everything is very simple.
+            Below is a list of courses and their groups. Simply select the course and group, and then click the "Apply"
+            button. Then fill in your details and that's it.
+        </p>
+        <ul class="courses-list">
+            @for (int i = 0; i < Model.Courses.Count; i++)
+            {
+                <li class="courses-list-item">
+                    <h3 class="header-h3 text-container">@Model.Courses[i].Name</h3>
+                    <p class="text-container">@Model.Courses[i].Description</p>
+                    <p class="text-container"><b>Groups:</b></p>
+                    
+                    <ul class="group-list">
+                        @{
+                            for (int j = 0; j < Model.Groups.Count; j++)
+                            {
+                                if (Model.Groups[j].Group.CourseId == Model.Courses[i].Id)
+                                {
+                                    <li class="group-list-item">
+                                        <h3 class="header-h3 text-container">
+                                            @Model.Groups[j].Group.Description. Group number: @Model.Groups[j].Group.Name
+                                        </h3>
+                                        <p class="text-container">Students:</p>
+                                        <table class="table">
+                                            <thead class="table-head">
+                                                <tr class="table-row">
+                                                    <th class="table-cell">First name</th>
+                                                    <th class="table-cell">Sacond name</th>
+                                                    <th class="table-cell">Last name</th>
+                                                    <th class="table-cell">Date of Birth</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody class="table-body">
+                                                @foreach (var student in Model.Groups[j].GroupData!.Students!)
+                                                {
+                                                    <tr class="table-row">
+                                                        <td class="table-cell">@student.Firstname</td>
+                                                        <td class="table-cell">@student.Middlename</td>
+                                                        <td class="table-cell">@student.Lastname</td>
+                                                        <td class="table-cell">@student.DateBirth.ToString("dd.MM.yyyy")</td>
+                                                    </tr>
+                                                }
+                                            </tbody>
+                                        </table>
+                                        
+                                        <form class="join-button" asp-area="" asp-controller="Admission" asp-action="AddStudent" method="get">
+                                            <input type="hidden" name="groupId" value="@Model.Groups[j].Group.Id"/>
+                                            <input type="submit" value="Join this group"/>
+                                        </form>
+                                        <hr/>
+                                    </li>
+                                }
+                            };
+                        }
+                    </ul>
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-container">We're sorry, no data was found.</p>
+    }
 </div>

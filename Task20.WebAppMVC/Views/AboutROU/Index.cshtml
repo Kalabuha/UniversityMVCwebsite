@@ -67,9 +67,13 @@
                             <p class="text-container">
                                 The course includes @courseViewModel.CourseData.GroupsAmount
                                 @if (@courseViewModel.CourseData.GroupsAmount == 1)
-                                { <span class="text-container">group.</span> }
+                                {
+                                    <span class="text-container">group.</span>
+                                }
                                 else
-                                { <span class="text-container">groups.</span> }
+                                {
+                                    <span class="text-container">groups.</span>
+                                }
                             </p>
                         }
 
@@ -96,7 +100,9 @@
         }
         else
         {
-            <p class="text-container">We're sorry, no data was found.</p>
+            <li>
+                <p class="text-container">We're sorry, no data was found.</p>
+            </li>
         }
     </ol>
 </div>

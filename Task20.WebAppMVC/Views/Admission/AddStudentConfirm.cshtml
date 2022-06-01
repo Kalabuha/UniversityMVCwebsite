@@ -1,0 +1,13 @@
+﻿@model MessageViewModel
+
+@if(Model != null)
+{
+    <h1 class="header-h1 text-container">Confirm</h1>
+
+    <p class="text-container">@Model.MessageText</p>
+    <a class="text-container" asp-area="" asp-controller="Admission" asp-action="Index">Back to group list</a>
+}
+else
+{
+    <p class="text-container">There is nothing</p>
+}

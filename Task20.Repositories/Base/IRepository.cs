@@ -4,11 +4,11 @@ namespace Task20.Repositories.Base
 {
     public interface IRepository<TEntity> where TEntity : BaseEntity
     {
-        void AddEntityAsync(TEntity entity);
+        Task AddEntityAsync(TEntity entity);
 
-        void UpdateEntityAsync(TEntity entity);
+        Task UpdateEntityAsync(TEntity entity);
 
-        void RemoveEntityAsync(TEntity entity);
+        Task RemoveEntityAsync(TEntity entity);
 
         TEntity? GetEntity(int id);
     }

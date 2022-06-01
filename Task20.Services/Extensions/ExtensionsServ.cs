@@ -10,7 +10,7 @@ namespace Task20.Services.Extensions
             services.AddScoped<CourseService>();
             services.AddScoped<GroupService>();
             services.AddScoped<TeacherService>();
-            //services.AddScoped<StudentRepository>();
+            services.AddScoped<StudentService>();
 
             return services;
         }

@@ -13,19 +13,19 @@ namespace Task20.Repositories.Base
             Context = context;
         }
 
-        public async void AddEntityAsync(TEntity entity)
+        public async Task AddEntityAsync(TEntity entity)
         {
             Context.Add(entity);
             await Context.SaveChangesAsync();
         }
 
-        public async void UpdateEntityAsync(TEntity entity)
+        public async Task UpdateEntityAsync(TEntity entity)
         {
             Context.Update(entity);
             await Context.SaveChangesAsync();
         }
 
-        public async void RemoveEntityAsync(TEntity entity)
+        public async Task RemoveEntityAsync(TEntity entity)
         {
             Context.Remove(entity);
             await Context.SaveChangesAsync();

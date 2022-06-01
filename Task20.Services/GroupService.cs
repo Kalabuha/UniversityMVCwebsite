@@ -19,6 +19,11 @@ namespace Task20.Services
             return _groupRepository.GetAllGroups().Select(g => g.EntityToModel()).ToList();
         }
 
+        public List<GroupModel> GetGroupModelsByCourseId(int courseId)
+        {
+            return _groupRepository.GetAllGroupsByCourseId(courseId).Select(g => g.EntityToModel()).ToList();
+        }
+
         public GroupData? GetStudentNumberAsGroupDataById(int groupId)
         {
             var groupEntity = _groupRepository.GetEntity(groupId);
@@ -37,6 +42,12 @@ namespace Task20.Services
             {
                 StudentsAmount = statistics.Value
             };
+        }
+
+        public GroupModel? GetGroupByGroupId(int id)
+        {
+            var groupEntity = _groupRepository.GetEntity(id);
+            return groupEntity?.EntityToModel();
         }
     }
 }

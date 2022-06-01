@@ -1,0 +1,37 @@
+﻿@model GroupModel
+
+@{
+    ViewData["Title"] = "New student";
+}
+
+@if (Model != null)
+{
+    <h1 class="header-h1 text-container">Admission of a new student</h1>
+    <p class="text-container">
+        Great, you want to enter our university and enroll in a group: <b>@Model.Name</b>?
+        To do this, fill in the input fields with your data. Please note that fields marked with '*' are require.
+    </p>
+
+    <form class="join-button" asp-area="" asp-controller="Admission" asp-action="AddStudent" method="post">
+        <input type="hidden" name="studentModel.GroupId" value="@Model.Id"/>
+
+        <label class="label text-container">Your first name</label>
+        <input class="text-field" type="text" name="studentModel.Firstname"/>
+
+        <label class="label text-container">Your middle name</label>
+        <input class="text-field" type="text" name="studentModel.Middlename"/>
+
+        <label class="label text-container">Your last name</label>
+        <input class="text-field" type="text" name="studentModel.Lastname"/>
+
+        <label class="label text-container">Date of your birth</label>
+        <input class="text-field" type="date" name="studentModel.DateBirth"/>
+
+        <input type="submit" value="Apply for admission"/>
+    </form>
+}
+else
+{
+    <p class="text-container">We're sorry, no data was found.</p>
+}
+

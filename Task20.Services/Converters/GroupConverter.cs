@@ -13,6 +13,7 @@ namespace Task20.Services.Converters
                 Name = entity.Name,
                 Description = entity.Description,
                 CreationDate = entity.CreationDate,
+                CourseId = entity.CourseId,
                 LeaderId = entity.LeaderId,
             };
         }
@@ -25,6 +26,7 @@ namespace Task20.Services.Converters
                 Name = model.Name,
                 Description= model.Description,
                 CreationDate = model.CreationDate,
+                CourseId = model.CourseId,
                 LeaderId = model.LeaderId,
             };
         }

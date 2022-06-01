@@ -44,7 +44,7 @@ namespace Task20.DataContext.Initialization
 
             var courses = new List<CourseEntity>()
             {
-                new CourseEntity { Name = "Business Essentials.", Description = "Interpret data to inform business decisions, explore the economic foundations of strategy, and discover what’s behind the numbers in financial statements.", CreationDate = new DateTime(1998, 08, 1), Leader = teachers[0] },
+                new CourseEntity { Name = "Business Essentials.", Description = "Interpret data to inform business decisions, explore the economic foundations of strategy, and discover what’s behind the numbers in financial statements.", CreationDate = new DateTime(1998, 08, 1) },
                 new CourseEntity { Name = "Leadership and Management.", Description = "Develop the leadership and management skills to get things done and bring out the best in your team, whether you’re an aspiring, new, or seasoned leader.", CreationDate = new DateTime(2001, 05, 25), Leader = teachers[1]},
                 new CourseEntity { Name = "Entrepreneurship and Innovation.", Description = "Learn what it takes to harness innovation and transform a disruptive idea into a viable venture.", CreationDate = new DateTime(2005, 11, 14), Leader = teachers[2]},
             };
@@ -52,29 +52,29 @@ namespace Task20.DataContext.Initialization
             var groups = new List<GroupEntity>()
             {
                 // cg-yy: <номер курса><номер группы>-<год>
-                new GroupEntity { Name = "11-98", Description = "First group", CreationDate = new DateTime(1998, 08, 01), Course = courses[0], Leader = teachers[3] },
-                new GroupEntity { Name = "12-98", Description = "Sacond group", CreationDate = new DateTime(1998, 08, 01), Course = courses[1], Leader = teachers[4] },
-                new GroupEntity { Name = "13-98", Description = "Third group", CreationDate = new DateTime(1998, 08, 01), Course = courses[1], Leader = teachers[5] },
-                new GroupEntity { Name = "21-01", Description = "Fourth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[6] },
-                new GroupEntity { Name = "22-01", Description = "Fifth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[7] },
-                new GroupEntity { Name = "23-01", Description = "Sixth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[1], Leader = teachers[8] },
+                new GroupEntity { Name = "11-98", Description = "First group", CreationDate = new DateTime(1998, 08, 01), Course = courses[1], Leader = teachers[3] },
+                new GroupEntity { Name = "12-98", Description = "Sacond group", CreationDate = new DateTime(1998, 08, 01), Course = courses[2], Leader = teachers[4] },
+                new GroupEntity { Name = "13-98", Description = "Third group", CreationDate = new DateTime(1998, 08, 01), Course = courses[2], Leader = teachers[5] },
+                new GroupEntity { Name = "21-01", Description = "Fourth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[2], Leader = teachers[6] },
+                new GroupEntity { Name = "22-01", Description = "Fifth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[2], Leader = teachers[7] },
+                new GroupEntity { Name = "23-01", Description = "Sixth group", CreationDate = new DateTime(2001, 05, 25), Course = courses[2], Leader = teachers[8] },
                 new GroupEntity { Name = "31-05", Description = "Seventh group", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[9] },
                 new GroupEntity { Name = "32-05", Description = "Eight group", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[10] },
                 new GroupEntity { Name = "33-05", Description = "Ninth group", CreationDate = new DateTime(2005, 11, 14), Course = courses[2], Leader = teachers[11] },
                 new GroupEntity { Name = "11-08", Description = "Tenth group", CreationDate = new DateTime(2008, 04, 15), Course = courses[2], Leader = teachers[12] },
-                new GroupEntity { Name = "12-08", Description = "Eleven group", CreationDate = new DateTime(2008, 04, 15), Course = courses[2], Leader = teachers[13] },
+                new GroupEntity { Name = "12-08", Description = "Eleven group", CreationDate = new DateTime(2008, 04, 15), Course = courses[2] },
             };
 
             var students = new List<StudentEntity>()
             {
                 new StudentEntity { Name = "Steve", SacondName = "John", LastName = "Carell", DateBirth = new DateTime(1962, 02, 16), DateAdmission = new DateTime(1998, 08, 01), Group = groups[0]},
-                new StudentEntity { Name = "Simon", SacondName = "John", LastName = "Pegg", DateBirth = new DateTime(1970, 02, 14), DateAdmission = new DateTime(1998, 08, 01), Group = groups[0]},
-                new StudentEntity { Name = "Rowan", SacondName = "Sebastian", LastName = "Atkinson", DateBirth = new DateTime(1955, 01, 06), DateAdmission = new DateTime(1998, 08, 01), Group = groups[0]},
-                new StudentEntity { Name = "Jim", SacondName = "Eugene", LastName = "Carrey", DateBirth = new DateTime(1962, 01, 17), DateAdmission = new DateTime(1998, 08, 01), Group = groups[0]},
-                new StudentEntity { Name = "Zachary", SacondName = "Knight", LastName = "Galifianakis", DateBirth = new DateTime(1969, 10, 01), DateAdmission = new DateTime(2001, 05, 25), Group = groups[1]},
-                new StudentEntity { Name = "Thomas", SacondName = "Jacob", LastName = "Black", DateBirth = new DateTime(1969, 09, 28), DateAdmission = new DateTime(2001, 05, 25), Group = groups[1]},
-                new StudentEntity { Name = "John", SacondName = "William", LastName = "Ferrell", DateBirth = new DateTime(1967, 07, 16), DateAdmission = new DateTime(2001, 05, 25), Group = groups[1]},
-                new StudentEntity { Name = "Owen", SacondName = "Cunningham", LastName = "Wilson", DateBirth = new DateTime(1968, 11, 18), DateAdmission = new DateTime(2001, 05, 25), Group = groups[1]},
+                new StudentEntity { Name = "Simon", SacondName = "John", LastName = "Pegg", DateBirth = new DateTime(1970, 02, 14), DateAdmission = new DateTime(1998, 08, 01), Group = groups[2]},
+                new StudentEntity { Name = "Rowan", SacondName = "Sebastian", LastName = "Atkinson", DateBirth = new DateTime(1955, 01, 06), DateAdmission = new DateTime(1998, 08, 01), Group = groups[8]},
+                new StudentEntity { Name = "Jim", SacondName = "Eugene", LastName = "Carrey", DateBirth = new DateTime(1962, 01, 17), DateAdmission = new DateTime(1998, 08, 01), Group = groups[7]},
+                new StudentEntity { Name = "Zachary", SacondName = "Knight", LastName = "Galifianakis", DateBirth = new DateTime(1969, 10, 01), DateAdmission = new DateTime(2001, 05, 25), Group = groups[2]},
+                new StudentEntity { Name = "Thomas", SacondName = "Jacob", LastName = "Black", DateBirth = new DateTime(1969, 09, 28), DateAdmission = new DateTime(2001, 05, 25), Group = groups[2]},
+                new StudentEntity { Name = "John", SacondName = "William", LastName = "Ferrell", DateBirth = new DateTime(1967, 07, 16), DateAdmission = new DateTime(2001, 05, 25), Group = groups[2]},
+                new StudentEntity { Name = "Owen", SacondName = "Cunningham", LastName = "Wilson", DateBirth = new DateTime(1968, 11, 18), DateAdmission = new DateTime(2001, 05, 25), Group = groups[2]},
                 new StudentEntity { Name = "Christopher", SacondName = "Julius", LastName = "Rock", DateBirth = new DateTime(1965, 02, 07), DateAdmission = new DateTime(2005, 11, 14), Group = groups[2]},
                 new StudentEntity { Name = "Mena", SacondName = "Alexandra", LastName = "Suvari", DateBirth = new DateTime(1979, 02, 13), DateAdmission = new DateTime(2005, 11, 14), Group = groups[2]},
                 new StudentEntity { Name = "Jennifer", SacondName = "McCarthy", LastName = "Wahlberg", DateBirth = new DateTime(1972, 11, 01), DateAdmission = new DateTime(2005, 11, 14), Group = groups[2]},

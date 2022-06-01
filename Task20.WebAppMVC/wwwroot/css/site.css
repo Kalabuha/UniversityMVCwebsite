@@ -139,3 +139,18 @@
   color: black;
   padding: 10px 5px;
 }
+
+/* Admission */
+/* Index */
+.students-img {
+  margin: 0 0 50px 0;
+}
+
+.join-button {
+  margin: 0 0 40px 0;
+}
+
+/* AddStudent */
+.text-field {
+  margin: 0 20px 40px 0;
+}
