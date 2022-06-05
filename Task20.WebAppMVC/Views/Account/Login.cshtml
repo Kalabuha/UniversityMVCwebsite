@@ -1,0 +1,42 @@
+﻿@model LoginViewModel
+
+@{
+    ViewData["Title"] = "ROU Login";
+    Layout = null;
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"]</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/normalize.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Task20.WebAppMVC.styles.css" asp-append-version="true" />
+</head>
+<body>
+    @if (Model == null)
+    {
+        var NewModel = new LoginViewModel() { Login = string.Empty, Password = string.Empty };
+    }
+
+    <div class="login-container">
+        <div class="login-block">
+            <form class="login-fields" asp-area="" asp-controller="Account" asp-action="Login" method="post">
+                <p class="invitation-login text-container">Login:</p>
+                <input class="text-field-login" asp-for="Login" />
+                <span class="validation-login text-container" asp-validation-for="Login"></span>
+
+                <p class="invitation-password text-container">Password:</p>
+                <input class="text-field-password" asp-for="Password" />
+                <span class="validation-password text-container" asp-validation-for="Password"></span>
+
+                <input class="login-button" type="submit" value="Log in" />
+                @*<div class="validation-full" asp-validation-summary="All"></div>*@
+            </form>
+        </div>
+    </div>
+</body>
+</html>

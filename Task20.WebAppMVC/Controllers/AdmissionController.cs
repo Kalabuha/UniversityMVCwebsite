@@ -26,7 +26,6 @@ namespace Task20.WebAppMVC.Controllers
         {
             var viewContainer = new AdmissionViewModel
             {
-                Courses = new List<CourseModel>(),
                 Groups = new List<GroupViewModel>()
             };
 

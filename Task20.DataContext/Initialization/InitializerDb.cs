@@ -106,6 +106,12 @@ namespace Task20.DataContext.Initialization
                 new StudentEntity { Name = "Gillian", SacondName = "Leigh", LastName = "Anderson", DateBirth = new DateTime(1968, 08, 09), DateAdmission = new DateTime(2008, 04, 15), Group = groups[10]},
             };
 
+            var users = new List<UserEntity>()
+            {
+                // clean password: 1111
+                new UserEntity{ Name = "Timothy", Login = "qqqq", PasswordHash = "3mibZzyeGVG27AlETLXAF9MOkuASiIyzt1zLX89SoYo=", PasswordSalt = "3aaab4a2883148c4ba8e2a82aa434be8", Role = UserRole.Default },
+            };
+
             foreach (var teacher in teachers)
                 context.Teachers.Add(teacher);
 
@@ -117,6 +123,9 @@ namespace Task20.DataContext.Initialization
 
             foreach (var student in students)
                 context.Students.Add(student);
+
+            foreach (var user in users)
+                context.Users.Add(user);
 
             context.SaveChanges();
         }

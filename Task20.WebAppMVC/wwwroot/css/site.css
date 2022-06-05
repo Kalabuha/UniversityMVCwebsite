@@ -32,7 +32,7 @@
 .container {
   margin: 0 auto 60px auto;
   padding: 0;
-  width: 1170;
+  width: 1170px;
   font-family: Arial, Helvetica;
 }
 
@@ -59,19 +59,16 @@
 /* Home */
 /* Index */
 .home-list {
-  vertical-align: top;
   list-style-type: none;
 }
 
 .article-paragraph-home-1, .article-paragraph-home-2 {
   display: inline-block;
   width: 40%;
-
 }
 
 .home-img-1, .home-img-2 {
   width: 50%;
-  display: inline-block;
 }
 
 .home-img-1 {
@@ -98,7 +95,7 @@
 }
 
 .certificate-img-1, .certificate-img-2, .certificate-img-3 {
-  height: 320px;
+  height: 280px;
 }
 
 .courses-list {
@@ -124,6 +121,10 @@
 
 .teachers-list-item:not(:last-child) {
   margin-right: 60px;
+}
+
+.teachers-img-1, .teachers-img-2 {
+  height: 384px;
 }
 
 .table {
@@ -153,4 +154,39 @@
 /* AddStudent */
 .text-field {
   margin: 0 20px 40px 0;
+}
+
+/* Account */
+.login-block {
+  margin: 100px auto 0 auto;
+  padding: 45px 50px 50px 50px;
+  width: 40%;
+  background-color: lightgray;
+  border-radius: 20px;
+}
+
+.text-field-login, .text-field-password {
+  margin: 0 0 15px 0;
+  width: 100%;
+}
+
+.invitation-login {
+  margin: 0 0 15px 0;
+  color: black;
+}
+
+.invitation-password {
+  margin: 45px 0 15px 0;
+  color: black;
+}
+
+.validation-login, .validation-password {
+  color: black;
+  display: block;
+  position: absolute;
+}
+
+.login-button {
+  display: inline-block;
+  margin: 45px 0 0 0;
 }

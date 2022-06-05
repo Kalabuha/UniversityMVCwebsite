@@ -13,7 +13,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task20.Repositories", "Task
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task20.Services", "Task20.Services\Task20.Services.csproj", "{F5444112-FEBA-4D90-9D59-B7342492B657}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Task20.Models", "Task20.Models\Task20.Models.csproj", "{FD4ACFF0-78CE-49D2-A3C1-E944F5F33455}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Task20.Models", "Task20.Models\Task20.Models.csproj", "{FD4ACFF0-78CE-49D2-A3C1-E944F5F33455}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

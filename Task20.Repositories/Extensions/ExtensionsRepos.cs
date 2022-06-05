@@ -11,6 +11,7 @@ namespace Task20.Repositories.Extensions
             services.AddScoped<GroupRepository>();
             services.AddScoped<StudentRepository>();
             services.AddScoped<TeacherRepository>();
+            services.AddScoped<UserRepository>();
 
             return services;
         }
