@@ -17,11 +17,6 @@
     <link rel="stylesheet" href="~/Task20.WebAppMVC.styles.css" asp-append-version="true" />
 </head>
 <body>
-    @if (Model == null)
-    {
-        var NewModel = new LoginViewModel() { Login = string.Empty, Password = string.Empty };
-    }
-
     <div class="login-container">
         <div class="login-block">
             <form class="login-fields" asp-area="" asp-controller="Account" asp-action="Login" method="post">

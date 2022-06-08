@@ -1,1 +1,32 @@
-﻿
+﻿@model AdministrationViewModel
+
+@{
+    ViewData["Title"] = "ROU Administration";
+}
+
+@if(Model != null)
+{
+    @*Courses*@
+    if (Model.Courses != null && Model.Courses.Count != 0)
+    {
+        <p class="text-container">Данные по курсам получены</p>
+    }
+    else
+    {
+        <p class="text-container">Данных по курсам нет</p>
+    }
+
+    @*Groups*@
+    if (Model.Groups != null && Model.Groups.Count != 0)
+    {
+        <p class="text-container">Данные по группам получены</p>
+    }
+    else
+    {
+        <p class="text-container">Данных по группам нет</p>
+    }
+}
+else
+{
+    <p class="text-container">Данных нет</p>
+}

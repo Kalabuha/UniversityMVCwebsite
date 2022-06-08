@@ -18,6 +18,7 @@
   <ItemGroup>
     <ProjectReference Include="..\Task20.DataContext\Task20.DataContext.csproj" />
     <ProjectReference Include="..\Task20.Repositories\Task20.Repositories.csproj" />
+    <ProjectReference Include="..\Task20.ServicesApi\Task20.ServicesApi.csproj" />
     <ProjectReference Include="..\Task20.Services\Task20.Services.csproj" />
   </ItemGroup>
 

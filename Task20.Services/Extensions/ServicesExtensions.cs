@@ -3,7 +3,7 @@ using Task20.Services;
 
 namespace Task20.Services.Extensions
 {
-    public static class ExtensionsServ
+    public static class ServicesExtensions
     {
         public static IServiceCollection RegisterServices(this IServiceCollection services)
         {

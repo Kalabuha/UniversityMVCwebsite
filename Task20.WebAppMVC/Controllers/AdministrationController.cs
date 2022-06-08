@@ -1,14 +1,31 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Task20.ServicesApi;
+using Task20.WebAppMVC.Models;
 
 namespace Task20.WebAppMVC.Controllers
 {
     public class AdministrationController : Controller
     {
-        // GET: AdministrationController
-        public ActionResult Index()
+        private readonly CourseServiceApi _courseServiceApi;
+        private readonly GroupServiceApi _groupServiceApi;
+
+        public AdministrationController(CourseServiceApi courseServiceApi, GroupServiceApi groupServiceApi)
         {
-            return View();
+            _courseServiceApi = courseServiceApi;
+            _groupServiceApi = groupServiceApi;
+        }
+
+        // GET: AdministrationController
+        public async Task<ActionResult> Index()
+        {
+            var courses = await _courseServiceApi.GetAllCourseModelsAsync();
+            var groups = await _groupServiceApi.GetAllGroupModelsAsync();
+
+            var viewContainer = new AdministrationViewModel();
+            viewContainer.Courses = courses;
+            viewContainer.Groups = groups;
+
+            return View(viewContainer);
         }
 
         // GET: AdministrationController/Details/5

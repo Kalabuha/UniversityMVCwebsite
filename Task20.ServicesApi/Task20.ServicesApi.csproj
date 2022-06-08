@@ -1,0 +1,21 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.Extensions.Http" Version="6.0.0" />
+    <PackageReference Include="System.Net.Http.Json" Version="6.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Task20.ApiModels\Task20.ApiModels.csproj" />
+    <ProjectReference Include="..\Task20.Entities\Task20.Entities.csproj" />
+    <ProjectReference Include="..\Task20.Models\Task20.Models.csproj" />
+    <ProjectReference Include="..\Task20.Services\Task20.Services.csproj" />
+  </ItemGroup>
+
+</Project>

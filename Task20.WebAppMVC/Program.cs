@@ -1,10 +1,12 @@
 using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Task20.DataContext.Initialization;
 using Task20.DataContext.DataBaseContext;
 using Task20.DataContext.Extensions;
 using Task20.Repositories.Extensions;
 using Task20.Services.Extensions;
-using Microsoft.AspNetCore.Authentication.Cookies;
+using Task20.ServicesApi;
+using Task20.WebAppMVC;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -21,7 +23,8 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.RegisterDbContext(connectionString);
 builder.Services.RegisterRepositories();
 builder.Services.RegisterServices();
-
+builder.Services.AddScoped<IUserContext, MvcUserContext>();
+builder.Services.RegisterServicesApi("https://localhost:7205");
 
 var app = builder.Build();
 

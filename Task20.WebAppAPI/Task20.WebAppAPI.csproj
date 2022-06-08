@@ -1,0 +1,20 @@
+<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Task20.ApiModels\Task20.ApiModels.csproj" />
+    <ProjectReference Include="..\Task20.DataContext\Task20.DataContext.csproj" />
+    <ProjectReference Include="..\Task20.Entities\Task20.Entities.csproj" />
+    <ProjectReference Include="..\Task20.Models\Task20.Models.csproj" />
+  </ItemGroup>
+
+</Project>
