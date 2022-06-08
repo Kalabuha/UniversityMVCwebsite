@@ -1,0 +1,40 @@
+﻿@model GroupModel
+
+@{
+    ViewData["Title"] = "Update group";
+}
+
+<h1 class="header-h1 text-container">Group change</h1>
+
+@if (Model != null)
+{
+    <div class="manager-container">
+        <p class="text-container">
+            If the field is left blank, then the data for this parameter will not change.
+        </p>
+
+        <form class="group-button" asp-area="" asp-controller="Administration" asp-action="UpdateGroup" method="post">
+            <input type="hidden" name="group.Id" value="@Model.Id" />
+            <input type="hidden" name="group.CourseId" value="@Model.CourseId" />
+            <input type="hidden" name="group.CreationDate" value="@Model.CreationDate" />
+
+            <h2 class="header-h2 text-container">Make changes to text fields:</h2>
+
+            <p class="manager-label text-container">Name:</p>
+            <input class="group-input" type="text" name="group.Name" value="@Model.Name" />
+
+            <p class="manager-label text-container">Description:</p>
+            <input class="group-input" type="text" name="group.Description" value="@Model.Description" />
+
+            <p class="manager-label text-container">Group leader:</p>
+            <input class="group-input" type="number" name="group.LeaderId" value="@Model.LeaderId" />
+
+            <input class="group-input-button" type="submit" value="Update" />
+            <input class="group-input-button" type="reset" value="Reset" />
+        </form>
+    </div>
+}
+else
+{
+    <p class="text-container">No data</p>
+}

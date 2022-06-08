@@ -9,9 +9,14 @@ namespace Task20.ServicesApi
     {
         private readonly HttpClient _httpClient;
 
-        public CourseServiceApi(HttpClient httpClient)
+        public CourseServiceApi(HttpClient httpClient, IUserContext userContext)
         {
             _httpClient = httpClient;
+
+            if (userContext.UserName != null)
+            {
+                _httpClient.DefaultRequestHeaders.Add("X-User-Name", userContext.UserName);
+            }
         }
 
         public async Task<List<CourseModel>?> GetAllCourseModelsAsync()

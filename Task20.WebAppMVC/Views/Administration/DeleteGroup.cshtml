@@ -1,0 +1,27 @@
+﻿@model GroupModel
+
+@{
+    ViewData["Title"] = "Delete group";
+}
+
+<h1 class="header-h1 text-container">Delete group</h1>
+
+@if (Model != null)
+{
+    <div class="manager-container">
+         <p class="text-container">
+            We remind you that it is forbidden to delete a group in which there are students.
+            If the group is not removed, then you will need to remove the students first.
+        </p>
+        <form class="group-button" asp-area="" asp-controller="Administration" asp-action="DeleteGroupСonfirm" method="post">
+            <input type="hidden" name="groupId" value="@Model.Id" />
+
+            <h2 class="header-h2 text-container">Do you really want to remove the group: @Model.Name?</h2>
+            <input class="group-input-button" type="submit" value="Delete" />
+        </form>
+    </div>
+}
+else
+{
+    <p class="text-container">No data</p>
+}

@@ -1,6 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Task20.ServicesApi;
 using Task20.WebAppMVC.Models;
+using Task20.Models;
+using Task20.ApiModels;
 
 namespace Task20.WebAppMVC.Controllers
 {
@@ -18,83 +20,186 @@ namespace Task20.WebAppMVC.Controllers
         // GET: AdministrationController
         public async Task<ActionResult> Index()
         {
-            var courses = await _courseServiceApi.GetAllCourseModelsAsync();
-            var groups = await _groupServiceApi.GetAllGroupModelsAsync();
-
             var viewContainer = new AdministrationViewModel();
-            viewContainer.Courses = courses;
-            viewContainer.Groups = groups;
+
+            try
+            {
+                var courses = await _courseServiceApi.GetAllCourseModelsAsync();
+                var groups = await _groupServiceApi.GetAllGroupModelsAsync();
+
+                viewContainer.Courses = courses;
+                viewContainer.Groups = groups;
+            }
+            catch (Exception)
+            {
+                viewContainer = null;
+            }
 
             return View(viewContainer);
         }
 
-        // GET: AdministrationController/Details/5
-        public ActionResult Details(int id)
+
+        // GET: AdministrationController/AddGroup
+        [HttpGet]
+        public ActionResult AddGroup(int courseId)
         {
-            return View();
+            var group = new GroupModel
+            {
+                CourseId = courseId,
+            };
+
+            ViewBag.NameNotCorrect = "*";
+            ViewBag.DescrNotCorrect = "*";
+
+            return View(group);
         }
 
-        // GET: AdministrationController/Create
-        public ActionResult Create()
-        {
-            return View();
-        }
-
-        // POST: AdministrationController/Create
+        // POST: AdministrationController/AddGroup
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Create(IFormCollection collection)
+        public async Task<ActionResult> AddGroup(GroupModel group)
         {
-            try
+            bool isDataValid = true;
+            string errorNameMessage;
+            string errorDescMessage;
+
+            (isDataValid, errorNameMessage) = IsNameValid(group.Name);
+            (isDataValid, errorDescMessage) = IsDescValid(group.Description);
+
+            if (!isDataValid)
             {
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(AddGroup), new { courseId = group.CourseId });
             }
-            catch
+
+            var creator = new GroupCreator
             {
-                return View();
-            }
+                CourseId = group.CourseId,
+                Name = group.Name,
+                Description = group.Description,
+                LeaderId = group.LeaderId != 0 ? group.LeaderId : null,
+            };
+
+            await _groupServiceApi.CraeteGroupAsync(creator);
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: AdministrationController/Edit/5
-        public ActionResult Edit(int id)
+        // GET: AdministrationController/UpdateGroup/id
+        public async Task<ActionResult> UpdateGroup(int groupId)
         {
-            return View();
+            var group = await _groupServiceApi.GetGroupModelByGroupIdAsync(groupId);
+            if (group == null)
+            {
+                return NotFound();
+            }
+
+            ViewBag.NameNotCorrect = "*";
+            ViewBag.DescrNotCorrect = "*";
+
+            return View(group);
         }
 
-        // POST: AdministrationController/Edit/5
+        // POST: AdministrationController/UpdateGroup/id
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public async Task<ActionResult> UpdateGroup(GroupModel group)
         {
-            try
+            var updater = new GroupUpdater
             {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+                CourseId = group.CourseId,
+                Name = IsTextNotNullOrEmptyOrWhiteSpaceCheck(group.Name) ? group.Name : null,
+                Description = IsTextNotNullOrEmptyOrWhiteSpaceCheck(group.Description) ? group.Description : null,
+                LeaderId = group.LeaderId
+            };
+
+            await _groupServiceApi.UpdateGroupByGroupIdAsync(group.Id, updater);
+            return RedirectToAction(nameof(Index));
         }
 
-        // GET: AdministrationController/Delete/5
-        public ActionResult Delete(int id)
+        // GET: AdministrationController/DeleteGroup
+        public async Task<ActionResult> DeleteGroup(int groupId)
         {
-            return View();
+            var group = await _groupServiceApi.GetGroupModelByGroupIdAsync(groupId);
+            if (group == null)
+            {
+                return NotFound();
+            }
+
+            return View(group);
         }
 
-        // POST: AdministrationController/Delete/5
+        // POST: AdministrationController/DeleteGroup
         [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public async Task<ActionResult> DeleteGroupСonfirm(int groupId)
         {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
+            await _groupServiceApi.DeleteGroupByGroupIdAsync(groupId);
+            return RedirectToAction(nameof(Index));
         }
+
+        private (bool, string) IsNameValid(string name)
+        {
+            string errorMessage;
+            if (IsTextNotNullOrEmptyOrWhiteSpaceCheck(name))
+            {
+                if (IsTextNotExceedMaxLength(name, 50))
+                {
+                    errorMessage = " ";
+                }
+                else
+                {
+                    errorMessage = "Group name must not exceed 50 characters.";
+                    return (false, errorMessage);
+                }
+            }
+            else
+            {
+                errorMessage = "Group name cannot be empty.";
+                return (false, errorMessage);
+            }
+
+            return (true, errorMessage);
+        }
+
+        private (bool, string) IsDescValid(string desc)
+        {
+            string errorMessage;
+            if (IsTextNotNullOrEmptyOrWhiteSpaceCheck(desc))
+            {
+                if (IsTextNotExceedMaxLength(desc, 300))
+                {
+                    errorMessage = " ";
+                }
+                else
+                {
+                    errorMessage = "Group description must not exceed 300 characters.";
+                    return (false, errorMessage);
+                }
+            }
+            else
+            {
+                errorMessage = "Group description cannot be empty.";
+                return (false, errorMessage);
+            }
+
+            return(true, errorMessage);
+        }
+
+        private bool IsTextNotNullOrEmptyOrWhiteSpaceCheck(string text)
+        {
+            if (string.IsNullOrEmpty(text) || string.IsNullOrWhiteSpace(text))
+            {
+                return false;
+            }
+
+            return true;
+        }
+
+        private bool IsTextNotExceedMaxLength(string text, int textMaxLength)
+        {
+            if (text.Length > textMaxLength)
+            {
+                return false;
+            }
+
+            return true;
+        }
+
     }
 }

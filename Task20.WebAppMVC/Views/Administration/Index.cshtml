@@ -4,29 +4,119 @@
     ViewData["Title"] = "ROU Administration";
 }
 
-@if(Model != null)
-{
-    @*Courses*@
-    if (Model.Courses != null && Model.Courses.Count != 0)
-    {
-        <p class="text-container">Данные по курсам получены</p>
-    }
-    else
-    {
-        <p class="text-container">Данных по курсам нет</p>
-    }
+<h1 class="header-h1 text-container">ROU administration</h1>
 
-    @*Groups*@
-    if (Model.Groups != null && Model.Groups.Count != 0)
+@if (Model != null)
+{
+    <p class="text-container">
+        Welcome user, here you can make changes to the structure of our university.
+        To do this, select the group you want to change and click on the required button.
+    </p>
+
+    <h2 class="header-h2 text-container">Administrator instructions</h2>
+    <ul class="instructions-list">
+        <li class="instructions-list-item">
+            <p class="text-container text-instruction">
+                To add a new group, you first need to select the appropriate course to which you want to add the group.
+            </p>
+        </li>
+        <li class="instructions-list-item">
+            <p class="text-container text-instruction">
+                Mandatory parameters are: name and description of the group.
+                It is not necessary to indicate the leader of the group, this can be done later.
+            </p>
+        </li>
+        <li class="instructions-list-item">
+            <p class="text-container text-instruction">
+                If you need to make changes to a group, you can only specify the settings that you want to change.
+                In this case, if an invalid parameter is specified, then changes to this parameter will not take effect.
+            </p>
+        </li>
+        <li class="instructions-list-item">
+            <p class="text-container text-instruction">
+                A teacher can only lead one group or course.
+                If the teacher is busy, then he cannot be appointed as the leader of another group.
+            </p>
+        </li>
+        <li class="instructions-list-item">
+            <p class="text-container text-instruction">
+                It is not allowed to delete those groups in which at least one student is enrolled.
+            </p>
+        </li>
+    </ul>
+
+    <h2 class="header-h2 text-container">List of courses and groups</h2>
+
+    if (Model.Courses != null && Model.Groups != null)
     {
-        <p class="text-container">Данные по группам получены</p>
+        <ol class="courses-list">
+            @foreach (CourseModel course in Model.Courses)
+            {
+                <li class="courses-list-item">
+                    <h3 class="header-h3 text-container">Course: @course.Name</h3>
+                    <table class="table">
+                        <thead class="table-head">
+                            <tr class="table-row">
+                                <th class="table-cell">Description</th>
+                                <th class="table-cell">Name</th>
+                                <th class="table-cell">Leader</th>
+                                <th class="table-cell">Date of Birth</th>
+                                <th class="table-cell cell-button"></th>
+                                <th class="table-cell cell-button"></th>
+                            </tr>
+                        </thead>
+
+                        <tbody class="table-body">
+                            @foreach (GroupModel group in Model.Groups.Where(g => g.CourseId == course.Id))
+                            {
+                                <tr class="table-row">
+                                    <td class="table-cell">@group.Description</td>
+                                    <td class="table-cell">@group.Name</td>
+                                    @if (group.LeaderId != null)
+                                    {
+                                        <td class="table-cell">@group.LeaderId</td>
+                                    }
+                                    else
+                                    {
+                                        <td class="table-cell">Not appointed</td>
+                                    }
+                                    <td class="table-cell">@group.CreationDate.ToString("dd.MM.yyyy")</td>
+                                    <td class="table-cell">
+                                        @*Update*@
+                                        <form class="group-button" asp-area="" asp-controller="Administration" asp-action="UpdateGroup" method="get">
+                                            <input type="hidden" name="groupId" value="@group.Id" />
+                                            <input type="submit" value="Update group" />
+                                        </form>
+                                    </td>
+                                    <td class="table-cell">
+                                        @*Delete*@
+                                        <form class="group-button" asp-area="" asp-controller="Administration" asp-action="DeleteGroup" method="get">
+                                            <input type="hidden" name="groupId" value="@group.Id" />
+                                            <input type="submit" value="Delete group" />
+                                        </form>
+                                    </td>
+                                </tr>
+                            }
+                        </tbody>
+                    </table>
+
+                    <form class="group-button" asp-area="" asp-controller="Administration" asp-action="AddGroup" method="get">
+                        <input type="hidden" name="courseId" value="@course.Id" />
+                        <input type="submit" value="Add group" />
+                    </form>
+                    <hr />
+                </li>
+            }
+        </ol>
     }
     else
     {
-        <p class="text-container">Данных по группам нет</p>
+
     }
 }
 else
 {
-    <p class="text-container">Данных нет</p>
+    <p class="text-container">
+        We apologize, but the API service is apparently not working.
+    </p>
 }

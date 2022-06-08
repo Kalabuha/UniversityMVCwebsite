@@ -5,6 +5,7 @@ using Task20.DataContext.DataBaseContext;
 using Task20.DataContext.Extensions;
 using Task20.Repositories.Extensions;
 using Task20.Services.Extensions;
+using Task20.ServicesApi.Extensions;
 using Task20.ServicesApi;
 using Task20.WebAppMVC;
 
@@ -23,6 +24,7 @@ if (string.IsNullOrEmpty(connectionString))
 builder.Services.RegisterDbContext(connectionString);
 builder.Services.RegisterRepositories();
 builder.Services.RegisterServices();
+builder.Services.AddHttpContextAccessor();
 builder.Services.AddScoped<IUserContext, MvcUserContext>();
 builder.Services.RegisterServicesApi("https://localhost:7205");
 

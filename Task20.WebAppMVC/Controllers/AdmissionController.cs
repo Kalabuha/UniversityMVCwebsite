@@ -52,12 +52,6 @@ namespace Task20.WebAppMVC.Controllers
             return View(viewContainer);
         }
 
-        // GET: AdmissionController/Details/5
-        public ActionResult Details(int id)
-        {
-            return View();
-        }
-
         public ActionResult AddStudent(int groupId)
         {
             var groupModel = _groupService.GetGroupByGroupId(groupId);

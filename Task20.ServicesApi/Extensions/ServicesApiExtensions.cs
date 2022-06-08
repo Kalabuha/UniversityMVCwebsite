@@ -1,33 +1,14 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 
-namespace Task20.ServicesApi
+namespace Task20.ServicesApi.Extensions
 {
     public static class ServicesApiExtensions
     {
         public static IServiceCollection RegisterServicesApi(this IServiceCollection services, string hostApi)
         {
             services
-                .AddHttpClient("CourseServiceApiClient", (serviceProvider, client) =>
-                {
-                    var userContext = serviceProvider.GetRequiredService<IUserContext>();
-                    client.BaseAddress = new Uri(hostApi);
-                    if (userContext.UserName != null)
-                    {
-                        client.DefaultRequestHeaders.Add("X-User-Name", userContext.UserName);
-                    }
-                })
-                .AddTypedClient<CourseServiceApi>();
-
-            services
-                .AddHttpClient("GroupServiceApiClient", (serviceProvider, client) =>
-                {
-                    var userContext = serviceProvider.GetRequiredService<IUserContext>();
-                    client.BaseAddress = new Uri(hostApi);
-                    if (userContext.UserName != null)
-                    {
-                        client.DefaultRequestHeaders.Add("X-User-Name", userContext.UserName);
-                    }
-                })
+                .AddHttpClient("Api", client => client.BaseAddress = new Uri(hostApi))
+                .AddTypedClient<CourseServiceApi>()
                 .AddTypedClient<GroupServiceApi>();
 
             return services;
